@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+   
+    {% if user.is_authenticated %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="user_url">Your URL</label>
+        <input type="text" id="user_url" name="user_url" value="{{ user_url }}" required>
+        <button>Generate</button>
+    </form>   
+        {% if troubles %}
+        <h1>TROUBLES</h1>
+        {% endif %}
+        {% if short_url %}
+        <p>Your short url is: <a href="{{ user_url }}">{{ short_url }}</a></p>
+        {% endif %}
+    {% else %}
+    <h2>Authenticate for use this service</h2>
+    {% endif %}
+</div>
+{% endblock %}
